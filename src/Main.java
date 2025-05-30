@@ -7,9 +7,21 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Sodoku sodoku = new Sodoku(0);
+        Scanner scanner = new Scanner(System.in);
 
-        //System.out.println(sodoku.checkSodokuRule());
+        System.out.print("Enter which grid size (0/1): ");
+        int whichGrid = scanner.nextInt();
+
+        Sodoku sodoku = new Sodoku(whichGrid);
+
+        while(true){
+            System.out.print("Enter block, case, number: ");
+            int block = scanner.nextInt();
+            int caseNb = scanner.nextInt();
+            int number = scanner.nextInt();
+
+            sodoku.insertNumber(block, caseNb, number);
+        }
 
     }
 }

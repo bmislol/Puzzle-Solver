@@ -37,7 +37,7 @@ public class Sodoku {
     }
 
     // check for the sodoku rule to make sure you didn't lose
-    public boolean checkSodokuRule(){
+    private boolean checkSodokuRule(){
         // check for each case (1 array block) has no repeating number
         int currentNb;
         int checkNb;
@@ -54,14 +54,38 @@ public class Sodoku {
                     }
                     checkNb = playGrid[i][k];
                     System.out.println("current i: " + i + " j: " + j + " k: " + k + ", current number: " + currentNb + ", check number: " + checkNb);
-                    if(currentNb == checkNb){
+                    if(currentNb == checkNb && currentNb != 0 && k != j){
                         return true;
                     }
                 }
             }
         }
 
+        // check each row for no repeating numbers
+
         return false;
+    }
+
+    private void printGrid(){
+        for(int[] ints : playGrid){
+            for(int anInt : ints){
+                System.out.print(anInt + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public void insertNumber(int row, int col, int number){
+        playGrid[row][col] = number;
+
+        if(!checkSodokuRule()){
+            System.out.println("Solved!");
+        }
+        else{
+            System.out.println("You Lose!");
+        }
+
+        printGrid();
     }
 
 }
